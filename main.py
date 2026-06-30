@@ -98,6 +98,30 @@ async def fournisseurs(interaction: discord.Interaction):
     await interaction.response.send_message(embed=embed, view=FournisseursButton())
 
 # --- Le bouton pour le pack niche ---
+class Niche2Button(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
+
+    @discord.ui.button(label="Recevoir le lien", style=discord.ButtonStyle.success, emoji="🔑")
+    async def get_link(self, interaction: discord.Interaction, button: discord.ui.Button):
+        lien = "https://canva.link/0e3zd56ngc9jasz"
+        await interaction.response.send_message(
+            f"Voici ton accès au pack niche 2 :\n{lien}",
+            ephemeral=True
+        )
+
+
+# --- Commande slash pour poster le message avec le bouton ---
+@bot.tree.command(name="niche2", description="Affiche le message d'accès au pack niche 2")
+async def niche(interaction: discord.Interaction):
+    embed = discord.Embed(
+        title="Accès au Pack Niche 2ème version",
+        description="Dans ce salon tu retrouveras deux version du pack niches, on te présente la 2ème version du pack niche, ou tu retrouveras des niches 100% rentable (attention: avec le temps les niches du pack peuvent se vendre moins chère ou moins rapidement).",
+        color=discord.Color.blurple()
+    )
+    await interaction.response.send_message(embed=embed, view=NicheButton())
+
+# --- Le bouton pour le pack niche ---
 class NicheButton(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
@@ -106,7 +130,7 @@ class NicheButton(discord.ui.View):
     async def get_link(self, interaction: discord.Interaction, button: discord.ui.Button):
         lien = "https://canva.link/s8f14ty0y7nbuq5"
         await interaction.response.send_message(
-            f"Voici ton accès au pack niche :\n{lien}",
+            f"Voici ton accès au pack niche 2 :\n{lien}",
             ephemeral=True
         )
 
@@ -115,8 +139,8 @@ class NicheButton(discord.ui.View):
 @bot.tree.command(name="niche", description="Affiche le message d'accès au pack niche")
 async def niche(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="Accès au Pack Niche 1ère version",
-        description="Dans ce salon tu retrouveras deux version du pack niches, on te présente la 1ère version du pack niche, ou tu retrouveras des niches 100% rentable (attention: avec le temps les niches du pack peuvent se vendre moins chère ou moins rapidement).",
+        title="🔑 Accès au Pack Niche",
+        description="Clique sur le bouton ci-dessous pour recevoir ton lien d'accès en privé.",
         color=discord.Color.blurple()
     )
     await interaction.response.send_message(embed=embed, view=NicheButton())
