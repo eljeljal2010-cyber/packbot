@@ -73,6 +73,30 @@ async def facture(interaction: discord.Interaction):
     )
     await interaction.response.send_message(embed=embed, view=FactureButton())
 
+# --- Le bouton pour le pack fournisseurs ---
+class FournisseursButton(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
+
+    @discord.ui.button(label="Recevoir le lien", style=discord.ButtonStyle.success, emoji="🔑")
+    async def get_link(self, interaction: discord.Interaction, button: discord.ui.Button):
+        lien = "https://canva.link/xx1e6g303g9mr66"
+        await interaction.response.send_message(
+            f"Voici ton accès au pack fournisseurs :\n{lien}",
+            ephemeral=True
+        )
+
+
+# --- Commande slash pour poster le message avec le bouton ---
+@bot.tree.command(name="fournisseurs", description="Affiche le message d'accès au pack fournisseurs")
+async def fournisseurs(interaction: discord.Interaction):
+    embed = discord.Embed(
+        title="Accès au Pack Fournisseurs",
+        description="Dans ce salon tu retrouveras un pack essentiel à l'achat revente, dedans tu retrouveras 7 fournisseurs dont 2 authentique, si tu veux te lancer ce pack est fait pour toi.",
+        color=discord.Color.blurple()
+    )
+    await interaction.response.send_message(embed=embed, view=FournisseursButton())
+
 
 # --- Quand le bot est prêt ---
 GUILD_ID = discord.Object(id=1521237058591395890)
