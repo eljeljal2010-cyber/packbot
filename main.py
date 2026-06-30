@@ -63,7 +63,7 @@ class FactureButton(discord.ui.View):
 # --- Commande slash pour poster le message avec le bouton ---
 @bot.tree.command(
     name="facture",
-    description="Dans cve salon on te présente le pack facture, il te permettra d'accéder a de nombreuses factures modifiables.",
+    description="Dans ce salon on te présente le pack facture, il te permettra d'accéder a de nombreuses factures modifiables.",
 )
 async def facture(interaction: discord.Interaction):
     embed = discord.Embed(
