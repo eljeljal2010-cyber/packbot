@@ -36,8 +36,8 @@ class PackButton(discord.ui.View):
 )
 async def pack(interaction: discord.Interaction):
     embed = discord.Embed(
-        title="🔑 Accès au Pack",
-        description="Clique sur le bouton ci-dessous pour recevoir ton lien d'accès en privé.",
+        title="Accès au Pack",
+        description="Dans se salon on te présente le pack facture, dans le pack tu auras accès a plus de 100 factures cents pour cents modifiable.",
         color=discord.Color.blurple(),
     )
     await interaction.response.send_message(embed=embed, view=PackButton())
