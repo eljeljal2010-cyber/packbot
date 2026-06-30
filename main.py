@@ -75,11 +75,14 @@ async def facture(interaction: discord.Interaction):
 
 
 # --- Quand le bot est prêt ---
+GUILD_ID = discord.Object(id=1521237058591395890)
+
 @bot.event
 async def on_ready():
     try:
-        synced = await bot.tree.sync()
-        print(f"{len(synced)} commande(s) synchronisée(s).")
+        bot.tree.copy_global_to(guild=GUILD_ID)
+        synced = await bot.tree.sync(guild=GUILD_ID)
+        print(f"{len(synced)} commande(s) synchronisée(s) sur le serveur.")
     except Exception as e:
         print(f"Erreur de synchronisation : {e}")
     print(f"Connecté en tant que {bot.user}")
