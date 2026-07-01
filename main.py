@@ -48,28 +48,22 @@ class FactureButton(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=None)
 
-    @discord.ui.button(
-        label="Recevoir le lien", style=discord.ButtonStyle.success, emoji="🔑"
-    )
-    async def get_link(
-        self, interaction: discord.Interaction, button: discord.ui.Button
-    ):
-        lien = "https://canva.link/cl8c2zs1l7uxv19"  # <-- remplace par ton vrai lien
+    @discord.ui.button(label="Recevoir le lien", style=discord.ButtonStyle.success, emoji="🔑")
+    async def get_link(self, interaction: discord.Interaction, button: discord.ui.Button):
+        lien = "https://canva.link/cl8c2zs1l7uxv19 "
         await interaction.response.send_message(
-            f"Voici ton accès au pack facture :\n{lien}", ephemeral=True
+            f"Voici ton accès au pack facture :\n{lien}",
+            ephemeral=True
         )
 
 
 # --- Commande slash pour poster le message avec le bouton ---
-@bot.tree.command(
-    name="facture",
-    description="Affiche le message d'accès au pack facture",
-)
-async def facture(interaction: discord.Interaction):
+@bot.tree.command(name="facture", description="Affiche le message d'accès au pack facture")
+async def fournisseurs(interaction: discord.Interaction):
     embed = discord.Embed(
         title="Accès au Pack Facture",
-        description="Dans ce salon on te présente un pack contenant plus de 100 factures cents pour cents modifiable.",
-        color=discord.Color.blurple(),
+        description="Dans ce salon tu retrouveras un pack contenant plus de 100 factures cent pour cent modifiable, essentiel pour te lancer.",
+        color=discord.Color.blurple()
     )
     await interaction.response.send_message(embed=embed, view=FactureButton())
 
